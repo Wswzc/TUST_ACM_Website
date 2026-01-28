@@ -1,0 +1,421 @@
+/**
+ * TUST-ACM 学习增强功能样式
+ * Learning Enhancement Styles
+ */
+
+/* 学习进度仪表板 */
+.learning-progress-dashboard {
+    padding: 40px 0;
+}
+
+.learning-progress-dashboard h3 {
+    color: #32325d;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 进度卡片 */
+.progress-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.progress-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.progress-card.active {
+    border: 2px solid #5e72e4;
+}
+
+.progress-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-left: 12px;
+}
+
+.progress-card-header .path-icon {
+    font-size: 28px;
+}
+
+.progress-card-header h5 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #32325d;
+}
+
+.progress-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.progress-bar-container .progress {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+}
+
+.progress-bar-container .progress-bar {
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.progress-text {
+    font-weight: 600;
+    color: #32325d;
+    min-width: 45px;
+    text-align: right;
+}
+
+.progress-details {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.progress-details small {
+    color: #8898aa;
+}
+
+.start-learning-btn {
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* 统计面板 */
+.statistics-panel {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: white;
+}
+
+.stat-icon {
+    font-size: 48px;
+    opacity: 0.9;
+}
+
+.stat-content h4 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+}
+
+.stat-content p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+    color: white;
+}
+
+/* 成就通知 */
+.achievement-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    z-index: 9999;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    max-width: 320px;
+}
+
+.achievement-notification.show {
+    transform: translateX(0);
+}
+
+.achievement-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.achievement-icon {
+    font-size: 48px;
+}
+
+.achievement-text strong {
+    display: block;
+    color: #32325d;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.achievement-text p {
+    margin: 0;
+    color: #8898aa;
+    font-size: 14px;
+}
+
+/* 学习路线图 */
+.learning-roadmap {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.roadmap-timeline {
+    position: relative;
+    padding-left: 40px;
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #5e72e4, #2dce89);
+}
+
+.roadmap-phase {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
+
+.roadmap-phase::before {
+    content: '';
+    position: absolute;
+    left: -29px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #5e72e4;
+    z-index: 1;
+}
+
+.roadmap-phase.completed::before {
+    background: #2dce89;
+    border-color: #2dce89;
+}
+
+.roadmap-phase h5 {
+    color: #32325d;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.roadmap-phase p {
+    color: #8898aa;
+    margin-bottom: 12px;
+}
+
+.topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.topic-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    color: #525f7f;
+}
+
+.topic-checkbox {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+/* 资源卡片 */
+.resource-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+    border-left: 4px solid #5e72e4;
+}
+
+.resource-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.resource-card h5 {
+    color: #32325d;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.resource-type-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.resource-type-badge.book {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.resource-type-badge.platform {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.resource-type-badge.tool {
+    background: #e8f5e9;
+    color: #388e3c;
+}
+
+.resource-type-badge.course {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.resource-description {
+    color: #8898aa;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #5e72e4;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.resource-link:hover {
+    color: #324cdd;
+    text-decoration: underline;
+}
+
+/* 学习计划器 */
+.study-planner {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border-radius: 16px;
+    padding: 40px;
+    color: white;
+    margin: 40px 0;
+}
+
+.study-planner h3 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.planner-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.planner-form .form-group {
+    margin-bottom: 20px;
+}
+
+.planner-form label {
+    color: white;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.planner-form select,
+.planner-form input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: white;
+    color: #32325d;
+}
+
+.planner-result {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.planner-result h5 {
+    color: white;
+    margin-bottom: 16px;
+}
+
+.planner-result ul {
+    list-style: none;
+    padding: 0;
+}
+
+.planner-result li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.planner-result li:last-child {
+    border-bottom: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .statistics-panel {
+        flex-direction: column;
+    }
+
+    .stat-item {
+        justify-content: center;
+    }
+
+    .achievement-notification {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+
+    .roadmap-timeline {
+        padding-left: 30px;
+    }
+}

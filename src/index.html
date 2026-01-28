@@ -61,6 +61,8 @@
     <link rel="stylesheet" href="assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
     <!-- Quick CSS -->
     <link rel="stylesheet" href="assets/css/quick-website.css" id="stylesheet">
+    <!-- Learning Enhancements CSS -->
+    <link rel="stylesheet" href="assets/css/learning-enhancements.css">
 </head>
 
 <body>
@@ -88,6 +90,9 @@
                 <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">学习路径</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resources-hub.html">学习资源</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">实验室介绍</a>
@@ -1409,6 +1414,56 @@
         </div>
     </section>
 
+    <!-- Study Planner Section -->
+    <section class="slice slice-lg" id="study-planner-section">
+        <div class="study-planner">
+            <div class="container">
+                <h3>📋 制定你的学习计划</h3>
+                <p class="text-white-50 mb-4">根据你的时间安排，我们为你生成个性化的学习计划</p>
+                
+                <div class="planner-form">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>选择学习路径</label>
+                                <select id="plan-path" class="form-control">
+                                    <option value="">请选择...</option>
+                                    <option value="algorithm">🧠 算法竞赛</option>
+                                    <option value="cpp">⚙️ C/C++开发</option>
+                                    <option value="python">🐍 Python开发</option>
+                                    <option value="frontend">🎨 前端开发</option>
+                                    <option value="backend">🔧 后端开发</option>
+                                    <option value="ai">🤖 AI/机器学习</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>每周学习时间（小时）</label>
+                                <input type="number" id="plan-hours" class="form-control" 
+                                       min="5" max="40" value="15" placeholder="15">
+                                <small class="form-text text-white-50">建议每周投入 10-20 小时</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>目标完成日期（可选）</label>
+                                <input type="date" id="plan-target" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-white btn-lg" onclick="generateStudyPlan()">
+                        🚀 生成学习计划
+                    </button>
+                </div>
+
+                <div id="plan-result" class="planner-result" style="display: none;">
+                    <!-- 计划结果将显示在这里 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Quick Entry Section -->
     <section class="slice py-5" id="quick-entry">
         <div class="container">
@@ -1420,31 +1475,40 @@
             </div>
             <div class="row text-center">
                 <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm h-100">
-                        <div class="card-body">
-                            <div style="font-size:2.5rem;">👶</div>
-                            <h3 class="mt-3 mb-2">初学者</h3>
-                            <p class="mb-0">零基础 / 刚入门，不知道从哪学起</p>
+                    <a href="beginner-path.html" class="text-decoration-none">
+                        <div class="card shadow-sm h-100 hover-translate-y-n10 hover-shadow-lg transition-all">
+                            <div class="card-body">
+                                <div style="font-size:2.5rem;">👶</div>
+                                <h3 class="mt-3 mb-2 text-dark">初学者</h3>
+                                <p class="mb-3 text-muted">零基础 / 刚入门，不知道从哪学起</p>
+                                <span class="btn btn-sm btn-primary">查看详情 →</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm h-100">
-                        <div class="card-body">
-                            <div style="font-size:2.5rem;">🚀</div>
-                            <h3 class="mt-3 mb-2">进阶学习者</h3>
-                            <p class="mb-0">有基础，想系统提升技术深度</p>
+                    <a href="advanced-path.html" class="text-decoration-none">
+                        <div class="card shadow-sm h-100 hover-translate-y-n10 hover-shadow-lg transition-all">
+                            <div class="card-body">
+                                <div style="font-size:2.5rem;">🚀</div>
+                                <h3 class="mt-3 mb-2 text-dark">进阶学习者</h3>
+                                <p class="mb-3 text-muted">有基础，想系统提升技术深度</p>
+                                <span class="btn btn-sm btn-primary">查看详情 →</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm h-100">
-                        <div class="card-body">
-                            <div style="font-size:2.5rem;">🎯</div>
-                            <h3 class="mt-3 mb-2">求职导向</h3>
-                            <p class="mb-0">面向实习 / 校招 / 社招的能力构建</p>
+                    <a href="career-path.html" class="text-decoration-none">
+                        <div class="card shadow-sm h-100 hover-translate-y-n10 hover-shadow-lg transition-all">
+                            <div class="card-body">
+                                <div style="font-size:2.5rem;">🎯</div>
+                                <h3 class="mt-3 mb-2 text-dark">求职导向</h3>
+                                <p class="mb-3 text-muted">面向实习 / 校招 / 社招的能力构建</p>
+                                <span class="btn btn-sm btn-primary">查看详情 →</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1461,32 +1525,35 @@
             </div>
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100">
+                    <div class="card h-100 border-primary">
                         <div class="card-body">
                             <div style="font-size:2rem;">👶</div>
                             <h3 class="mt-3 mb-2">初学导向</h3>
-                            <p class="mb-1 text-muted">推荐路线：Python、前端、基础算法</p>
-                            <p class="mb-0">目标：建立编程认知，能独立完成简单项目</p>
+                            <p class="mb-2 text-muted"><strong>推荐路线：</strong>Python、前端、基础算法</p>
+                            <p class="mb-3"><strong>目标：</strong>建立编程认知，能独立完成简单项目</p>
+                            <a href="beginner-path.html" class="btn btn-sm btn-outline-primary">了解更多 →</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100">
+                    <div class="card h-100 border-success">
                         <div class="card-body">
                             <div style="font-size:2rem;">🚀</div>
                             <h3 class="mt-3 mb-2">进阶导向</h3>
-                            <p class="mb-1 text-muted">推荐路线：算法竞赛、C/C++、后端/AI</p>
-                            <p class="mb-0">目标：构建系统性技术能力，理解"为什么这样设计"</p>
+                            <p class="mb-2 text-muted"><strong>推荐路线：</strong>算法竞赛、C/C++、后端/AI</p>
+                            <p class="mb-3"><strong>目标：</strong>构建系统性技术能力，理解"为什么这样设计"</p>
+                            <a href="advanced-path.html" class="btn btn-sm btn-outline-success">了解更多 →</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100">
+                    <div class="card h-100 border-warning">
                         <div class="card-body">
                             <div style="font-size:2rem;">🎯</div>
                             <h3 class="mt-3 mb-2">求职导向</h3>
-                            <p class="mb-1 text-muted">推荐路线：算法、后端/前端工程化、C++/AI（按岗位）</p>
-                            <p class="mb-0">目标：面向面试与真实岗位需求，提升竞争力</p>
+                            <p class="mb-2 text-muted"><strong>推荐路线：</strong>算法、后端/前端工程化、C++/AI（按岗位）</p>
+                            <p class="mb-3"><strong>目标：</strong>面向面试与真实岗位需求，提升竞争力</p>
+                            <a href="career-path.html" class="btn btn-sm btn-outline-warning">了解更多 →</a>
                         </div>
                     </div>
                 </div>
@@ -1566,6 +1633,10 @@
     <script src="assets/libs/feather-icons/dist/feather.min.js"></script>
     <!-- Quick JS -->
     <script src="assets/js/quick-website.js"></script>
+    <!-- Learning Enhancement Scripts -->
+    <script src="assets/js/learning-tracker.js"></script>
+    <script src="assets/js/resource-recommender.js"></script>
+    <script src="assets/js/study-planner.js"></script>
     <!-- Feather Icons -->
     <script>
         feather.replace({

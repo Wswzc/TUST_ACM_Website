@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="TUST-ACM 初学者学习路径 - 零基础编程入门指南">
+    <meta name="author" content="TUST-ACM Lab">
+    <title>初学者学习路径 | TUST-ACM 算法实验室</title>
+    <!-- Preloader -->
+    <style>
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
+            }
+
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
+
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/brand/favicon.jpg" type="image/png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="assets/css/quick-website.css" id="stylesheet">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html">
+                <img alt="TUST-ACM Logo" src="assets/img/brand/favicon.jpg" id="navbar-logo">
+                <strong style="color: #090808; top: 10px;"> TUST-ACM 算法实验室</strong>
+            </a>
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">学习路径</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">实验室介绍</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">报名与联系</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="slice py-7 bg-gradient-primary">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <div style="font-size:5rem;" class="mb-4">👶</div>
+                    <h1 class="display-3 text-white mb-3">初学者学习路径</h1>
+                    <p class="lead text-white opacity-8">零基础 / 刚入门，不知道从哪学起</p>
+                    <div class="mt-5">
+                        <a href="#overview" class="btn btn-white btn-icon">
+                            <span class="btn-inner--text">开始学习</span>
+                            <span class="btn-inner--icon"><i data-feather="chevron-down"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="slice py-7" id="overview">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="mb-4">学习导向概述</h2>
+                    <p class="lead text-muted">
+                        初学者路径专为零基础或刚入门的同学设计，帮助你建立编程认知，掌握基础语法，能够独立完成简单项目。
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card border-primary h-100">
+                        <div class="card-body text-center">
+                            <div class="icon icon-shape bg-primary text-white rounded-circle mb-4">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>学习目标</h4>
+                            <p class="text-muted mb-0">建立编程思维，掌握基础语法，能独立完成简单项目</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card border-success h-100">
+                        <div class="card-body text-center">
+                            <div class="icon icon-shape bg-success text-white rounded-circle mb-4">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>学习周期</h4>
+                            <p class="text-muted mb-0">3-6 个月（每周投入 10-15 小时）</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card border-info h-100">
+                        <div class="card-body text-center">
+                            <div class="icon icon-shape bg-info text-white rounded-circle mb-4">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>难度等级</h4>
+                            <p class="text-muted mb-0">入门级 - 无需任何编程基础</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Paths Section -->
+    <section class="slice py-7 bg-section-secondary">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="mb-4">推荐学习路线</h2>
+                    <p class="lead text-muted">根据你的兴趣和目标，选择最适合的入门路线</p>
+                </div>
+            </div>
+
+            <!-- Python Path -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="card shadow-lg">
+                        <div class="card-body p-5">
+                            <div class="d-flex align-items-center mb-4">
+                                <div style="font-size:3rem;" class="mr-3">🐍</div>
+                                <div>
+                                    <h3 class="mb-1">Python 入门路线</h3>
+                                    <span class="badge badge-primary">推荐首选</span>
+                                    <span class="badge badge-success ml-2">语法简单</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="text-primary">为什么选择 Python？</h5>
+                                <ul>
+                                    <li>语法简洁易懂，接近自然语言</li>
+                                    <li>应用广泛：Web 开发、数据分析、人工智能</li>
+                                    <li>丰富的学习资源和社区支持</li>
+                                    <li>快速看到学习成果，增强信心</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="text-primary">学习路线图</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 1-2 周：Python 基础</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>变量、数据类型、运算符</li>
+                                                    <li>条件语句、循环语句</li>
+                                                    <li>函数定义与调用</li>
+                                                    <li>列表、元组、字典</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 3-4 周：进阶语法</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>文件操作</li>
+                                                    <li>异常处理</li>
+                                                    <li>模块与包</li>
+                                                    <li>面向对象编程基础</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 5-8 周：实战项目</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>简单爬虫（爬取网页数据）</li>
+                                                    <li>数据可视化（matplotlib）</li>
+                                                    <li>小游戏开发（贪吃蛇、猜数字）</li>
+                                                    <li>自动化脚本</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 9-12 周：方向选择</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>Web 开发：Flask/Django</li>
+                                                    <li>数据分析：Pandas/NumPy</li>
+                                                    <li>人工智能：机器学习入门</li>
+                                                    <li>算法刷题：LeetCode 简单题</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-primary">
+                                <strong>📚 推荐资源：</strong>
+                                <ul class="mb-0">
+                                    <li>《Python 编程：从入门到实践》</li>
+                                    <li>菜鸟教程 Python 3 教程</li>
+                                    <li>廖雪峰 Python 教程</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frontend Path -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="card shadow-lg">
+                        <div class="card-body p-5">
+                            <div class="d-flex align-items-center mb-4">
+                                <div style="font-size:3rem;" class="mr-3">🎨</div>
+                                <div>
+                                    <h3 class="mb-1">前端开发入门路线</h3>
+                                    <span class="badge badge-info">可视化强</span>
+                                    <span class="badge badge-warning ml-2">成就感高</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="text-primary">为什么选择前端？</h5>
+                                <ul>
+                                    <li>学习成果可视化，能立即看到效果</li>
+                                    <li>入门门槛低，容易上手</li>
+                                    <li>就业市场需求大</li>
+                                    <li>可以制作个人网站、小程序等作品</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="text-primary">学习路线图</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 1-3 周：HTML + CSS</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>HTML 标签与语义化</li>
+                                                    <li>CSS 选择器与样式</li>
+                                                    <li>盒模型与布局（Flexbox/Grid）</li>
+                                                    <li>响应式设计基础</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 4-6 周：JavaScript 基础</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>变量、数据类型、运算符</li>
+                                                    <li>DOM 操作与事件处理</li>
+                                                    <li>数组与对象</li>
+                                                    <li>ES6 新特性</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 7-10 周：实战项目</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>个人简历网站</li>
+                                                    <li>待办事项应用</li>
+                                                    <li>简单计算器</li>
+                                                    <li>图片轮播组件</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 11-12 周：框架入门</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>Vue.js 基础</li>
+                                                    <li>组件化开发</li>
+                                                    <li>前端工程化工具</li>
+                                                    <li>简单的 SPA 应用</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <strong>📚 推荐资源：</strong>
+                                <ul class="mb-0">
+                                    <li>MDN Web 文档</li>
+                                    <li>FreeCodeCamp 中文版</li>
+                                    <li>《JavaScript 高级程序设计》</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basic Algorithm Path -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card shadow-lg">
+                        <div class="card-body p-5">
+                            <div class="d-flex align-items-center mb-4">
+                                <div style="font-size:3rem;" class="mr-3">🧩</div>
+                                <div>
+                                    <h3 class="mb-1">基础算法入门路线</h3>
+                                    <span class="badge badge-success">逻辑训练</span>
+                                    <span class="badge badge-primary ml-2">面试必备</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="text-primary">为什么学习算法？</h5>
+                                <ul>
+                                    <li>培养编程思维和问题解决能力</li>
+                                    <li>为后续深入学习打下基础</li>
+                                    <li>技术面试的核心考察内容</li>
+                                    <li>提升代码质量和效率</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="text-primary">学习路线图</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 1-2 周：编程语言基础</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>选择一门语言（Python/C++/Java）</li>
+                                                    <li>基础语法与输入输出</li>
+                                                    <li>数组与字符串</li>
+                                                    <li>简单的循环与判断</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 3-6 周：基础数据结构</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>栈与队列</li>
+                                                    <li>链表</li>
+                                                    <li>哈希表</li>
+                                                    <li>二叉树基础</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 7-10 周：基础算法</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>排序算法（冒泡、选择、快排）</li>
+                                                    <li>二分查找</li>
+                                                    <li>双指针技巧</li>
+                                                    <li>简单递归</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold">第 11-12 周：刷题实践</h6>
+                                                <ul class="mb-0 small">
+                                                    <li>LeetCode 简单题 50+</li>
+                                                    <li>洛谷入门题目</li>
+                                                    <li>牛客网基础题</li>
+                                                    <li>建立错题本</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-success">
+                                <strong>📚 推荐资源：</strong>
+                                <ul class="mb-0">
+                                    <li>《算法图解》</li>
+                                    <li>LeetCode 中文版</li>
+                                    <li>洛谷题库</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Tips Section -->
+    <section class="slice py-7">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="mb-4">学习建议与注意事项</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="text-success mb-3">✅ 推荐做法</h5>
+                            <ul>
+                                <li>每天坚持学习 1-2 小时，保持连续性</li>
+                                <li>多动手实践，不要只看不写</li>
+                                <li>遇到问题先自己思考，再查资料</li>
+                                <li>加入学习社群，与他人交流</li>
+                                <li>做好笔记和代码管理</li>
+                                <li>完成小项目来巩固知识</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="text-danger mb-3">❌ 避免误区</h5>
+                            <ul>
+                                <li>不要贪多求快，基础要打牢</li>
+                                <li>不要只看视频不动手</li>
+                                <li>不要遇到困难就放弃</li>
+                                <li>不要盲目追求新技术</li>
+                                <li>不要忽视英文文档的学习</li>
+                                <li>不要孤军奋战，要寻求帮助</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="alert alert-warning">
+                        <h5 class="alert-heading">💡 特别提醒</h5>
+                        <p class="mb-0">
+                            编程学习是一个循序渐进的过程，不要期望短时间内掌握所有内容。遇到困难是正常的，关键是保持耐心和持续学习的态度。
+                            实验室会定期组织答疑和交流活动，欢迎随时参加！
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="slice py-7 bg-gradient-primary">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="text-white mb-4">准备好开始学习了吗？</h2>
+                    <p class="lead text-white opacity-8 mb-5">
+                        加入 TUST-ACM 算法实验室，与志同道合的伙伴一起成长
+                    </p>
+                    <a href="contact.html" class="btn btn-white btn-lg">立即报名</a>
+                    <a href="index.html" class="btn btn-outline-white btn-lg ml-3">返回首页</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="position-relative" id="footer-main">
+        <div class="footer pt-lg-7 footer-dark bg-dark">
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <a href="index.html">
+                            <img alt="TUST-ACM Logo" src="assets/img/brand/favicon.jpg" id="footer-logo" style="width: 100px; height: 100px;">
+                        </a>
+                        <p class="mt-4 text-sm opacity-8 pr-lg-4">TUST-ACM 算法实验室致力于为学生提供最优质的编程与算法学习资源，帮助大家在竞赛和职业发展道路上不断进步。</p>
+                        <ul class="nav mt-4">
+                            <li class="nav-item">
+                                <a class="nav-link pl-0" href="https://codeforces.com/ratings/organization/43496" target="_blank" title="Our Codeforces">
+                                    <i class="fab fa-dribbble"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/Wswzc/TUST_ACM_Website" target="_blank" title="Our Github">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="divider divider-fade divider-dark my-4">
+                <div class="row align-items-center justify-content-md-between pb-4">
+                    <div class="col-md-6">
+                        <div class="copyright text-sm font-weight-bold text-center text-md-left">
+                            &copy; 2025 <a href="https://github.com/Wswzc" class="font-weight-bold" target="_blank">Sen Wang</a>. All rights reserved
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core JS -->
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Quick JS -->
+    <script src="assets/js/quick-website.js"></script>
+    <!-- Feather Icons -->
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>
+</body>
+
+</html>
