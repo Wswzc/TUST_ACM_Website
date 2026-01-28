@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="我的学习仪表板 - TUST-ACM">
+    <meta name="author" content="TUST-ACM Lab">
+    <title>我的学习仪表板 | TUST-ACM 算法实验室</title>
+    <link rel="icon" href="assets/img/brand/favicon.jpg" type="image/png">
+    <link rel="stylesheet" href="assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/quick-website.css">
+    <link rel="stylesheet" href="assets/css/learning-enhancements.css">
+    <link rel="stylesheet" href="assets/css/study-checkin.css">
+    <link rel="stylesheet" href="assets/css/dark-mode.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img alt="TUST-ACM Logo" src="assets/img/brand/favicon.jpg" id="navbar-logo">
+                <strong style="color: #090808;"> TUST-ACM 算法实验室</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">学习路径</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resources-hub.html">学习资源</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contests.html">竞赛赛程</a></li>
+                    <li class="nav-item"><a class="nav-link" href="my-dashboard.html">我的仪表板</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">实验室介绍</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">报名与联系</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="slice py-5 bg-gradient-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 class="display-4 text-white">📊 我的学习仪表板</h1>
+                    <p class="lead text-white-50">全面掌握你的学习进度和数据分析</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习打卡 -->
+    <section class="slice slice-lg">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-12">
+                    <h2 class="mb-4">📅 学习打卡</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div id="checkin-calendar"></div>
+                </div>
+                <div class="col-lg-4">
+                    <div id="checkin-stats"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据可视化 -->
+    <section class="slice slice-lg bg-section-secondary">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-12">
+                    <h2 class="mb-4">📈 学习数据分析</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">学习路径完成度</h5>
+                            <div style="height: 300px;">
+                                <canvas id="progress-pie-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">最近7天学习时长</h5>
+                            <div style="height: 300px;">
+                                <canvas id="study-time-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">每周学习活动</h5>
+                            <div style="height: 300px;">
+                                <canvas id="weekly-activity-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">知识点掌握雷达图</h5>
+                            <div style="height: 300px;">
+                                <canvas id="knowledge-radar-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white">
+        <div class="container">
+            <div class="row pt-5 pb-4">
+                <div class="col-lg-12 text-center">
+                    <p class="text-sm opacity-8">&copy; 2025 TUST-ACM 算法实验室. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="assets/js/quick-website.js"></script>
+    <script src="assets/js/study-checkin.js"></script>
+    <script src="assets/js/study-analytics.js"></script>
+    <script src="assets/js/dark-mode.js"></script>
+</body>
+</html>

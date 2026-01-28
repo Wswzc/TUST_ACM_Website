@@ -1,0 +1,287 @@
+/**
+ * 深色模式样式
+ * Dark Mode Styles
+ */
+
+/* 深色模式切换按钮 */
+.dark-mode-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.dark-mode-toggle:active {
+    transform: scale(0.95);
+}
+
+/* 深色模式变量 */
+[data-theme="dark"] {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-tertiary: #0f3460;
+    --text-primary: #eaeaea;
+    --text-secondary: #b8b8b8;
+    --text-muted: #8898aa;
+    --border-color: #2d3748;
+    --card-bg: #16213e;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 深色模式基础样式 */
+[data-theme="dark"] body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .bg-white {
+    background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .bg-section-secondary {
+    background-color: var(--bg-tertiary) !important;
+}
+
+/* 导航栏 */
+[data-theme="dark"] .navbar {
+    background-color: var(--bg-secondary) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .navbar-light .navbar-nav .nav-link {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .navbar-light .navbar-nav .nav-link:hover {
+    color: #667eea !important;
+}
+
+[data-theme="dark"] .navbar-brand strong {
+    color: var(--text-primary) !important;
+}
+
+/* 卡片 */
+[data-theme="dark"] .card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    box-shadow: var(--card-shadow);
+}
+
+[data-theme="dark"] .card-body {
+    color: var(--text-primary);
+}
+
+/* 文本颜色 */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] p {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .text-dark {
+    color: var(--text-primary) !important;
+}
+
+/* 按钮 */
+[data-theme="dark"] .btn-white {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-white:hover {
+    background-color: #0f3460;
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-outline-white {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-outline-white:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+/* 表单 */
+[data-theme="dark"] .form-control {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-control:focus {
+    background-color: var(--bg-tertiary);
+    border-color: #667eea;
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: var(--text-muted);
+}
+
+/* 进度卡片 */
+[data-theme="dark"] .progress-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .progress-card-header h5 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .progress {
+    background-color: var(--bg-tertiary);
+}
+
+/* 统计面板 */
+[data-theme="dark"] .statistics-panel {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 资源卡片 */
+[data-theme="dark"] .resource-card {
+    background-color: var(--card-bg);
+    border-left-color: #667eea;
+}
+
+[data-theme="dark"] .resource-card h5 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .resource-description {
+    color: var(--text-secondary);
+}
+
+/* 打卡日历 */
+[data-theme="dark"] .checkin-calendar-container {
+    background-color: var(--card-bg);
+}
+
+[data-theme="dark"] .calendar-header h4 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .calendar-day {
+    background-color: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .calendar-day.today {
+    background-color: #0f3460;
+}
+
+[data-theme="dark"] .day-number {
+    color: var(--text-primary);
+}
+
+/* 统计卡片 */
+[data-theme="dark"] .stat-card {
+    background-color: var(--card-bg);
+}
+
+[data-theme="dark"] .stat-value {
+    color: var(--text-primary);
+}
+
+/* Footer */
+[data-theme="dark"] .footer {
+    background-color: var(--bg-secondary) !important;
+    border-top: 1px solid var(--border-color);
+}
+
+/* 渐变背景保持不变 */
+[data-theme="dark"] .bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+[data-theme="dark"] .study-planner {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* 图表容器 */
+[data-theme="dark"] canvas {
+    filter: brightness(0.9);
+}
+
+/* 通知 */
+[data-theme="dark"] .achievement-notification,
+[data-theme="dark"] .checkin-success-notification {
+    background-color: var(--card-bg);
+}
+
+[data-theme="dark"] .success-content h4 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .success-content p {
+    color: var(--text-secondary);
+}
+
+/* Alert */
+[data-theme="dark"] .alert {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .alert-info {
+    background-color: rgba(102, 126, 234, 0.2);
+    border-color: #667eea;
+}
+
+/* Badge */
+[data-theme="dark"] .badge {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .dark-mode-toggle {
+        bottom: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+}
+
+/* 平滑过渡 */
+body,
+.card,
+.navbar,
+.btn,
+.form-control,
+.progress-card,
+.stat-card {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
