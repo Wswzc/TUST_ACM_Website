@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="算法竞赛赛程 - 实时更新各大平台比赛信息">
+    <meta name="author" content="TUST-ACM Lab">
+    <title>算法竞赛赛程 | TUST-ACM 算法实验室</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/brand/favicon.jpg" type="image/png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="assets/css/quick-website.css" id="stylesheet">
+    <!-- Learning Enhancements CSS -->
+    <link rel="stylesheet" href="assets/css/learning-enhancements.css">
+    <!-- Contest Schedule CSS -->
+    <link rel="stylesheet" href="assets/css/contest-schedule.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img alt="TUST-ACM Logo" src="assets/img/brand/favicon.jpg" id="navbar-logo">
+                <strong style="color: #090808;"> TUST-ACM 算法实验室</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">学习路径</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resources-hub.html">学习资源</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contests.html">竞赛赛程</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">实验室介绍</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">报名与联系</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="slice slice-lg bg-gradient-primary">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-3 text-white">🏆 算法竞赛赛程</h1>
+                    <p class="lead text-white-50 mt-4">
+                        实时更新各大平台比赛信息，不错过任何一场精彩比赛
+                    </p>
+                    <div class="mt-4">
+                        <span class="badge badge-lg badge-white text-primary mr-2">
+                            <i class="fas fa-sync-alt"></i> 自动更新
+                        </span>
+                        <span class="badge badge-lg badge-white text-primary mr-2">
+                            <i class="fas fa-bell"></i> 比赛提醒
+                        </span>
+                        <span class="badge badge-lg badge-white text-primary">
+                            <i class="fas fa-calendar-check"></i> 一键报名
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="slice slice-sm bg-section-secondary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-primary">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-contests">-</h3>
+                            <p>即将开始的比赛</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-success">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="today-contests">-</h3>
+                            <p>今日比赛</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="week-contests">-</h3>
+                            <p>本周比赛</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-info">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="platform-count">8</h3>
+                            <p>支持平台</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="slice slice-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="filter-bar">
+                        <div class="filter-group">
+                            <label>平台筛选：</label>
+                            <div class="platform-filters">
+                                <button class="filter-btn active" data-platform="all">
+                                    <i class="fas fa-globe"></i> 全部
+                                </button>
+                                <button class="filter-btn" data-platform="codeforces">
+                                    <i class="fas fa-code"></i> Codeforces
+                                </button>
+                                <button class="filter-btn" data-platform="atcoder">
+                                    <i class="fas fa-atom"></i> AtCoder
+                                </button>
+                                <button class="filter-btn" data-platform="leetcode">
+                                    <i class="fas fa-laptop-code"></i> LeetCode
+                                </button>
+                                <button class="filter-btn" data-platform="luogu">
+                                    <i class="fas fa-flag"></i> 洛谷
+                                </button>
+                                <button class="filter-btn" data-platform="nowcoder">
+                                    <i class="fas fa-graduation-cap"></i> 牛客
+                                </button>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label>时间筛选：</label>
+                            <div class="time-filters">
+                                <button class="filter-btn active" data-time="all">全部</button>
+                                <button class="filter-btn" data-time="today">今天</button>
+                                <button class="filter-btn" data-time="week">本周</button>
+                                <button class="filter-btn" data-time="month">本月</button>
+                            </div>
+                        </div>
+                        <div class="filter-actions">
+                            <button class="btn btn-primary btn-sm" onclick="contestSchedule.refreshContests()">
+                                <i class="fas fa-sync-alt"></i> 刷新数据
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm" onclick="contestSchedule.exportCalendar()">
+                                <i class="fas fa-download"></i> 导出日历
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contest List -->
+    <section class="slice slice-lg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Loading State -->
+                    <div id="loading-state" class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">加载中...</span>
+                        </div>
+                        <p class="mt-3 text-muted">正在获取最新赛程信息...</p>
+                    </div>
+
+                    <!-- Contest Cards -->
+                    <div id="contest-list" style="display: none;">
+                        <!-- 比赛卡片将动态生成 -->
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="empty-state" style="display: none;" class="text-center py-5">
+                        <i class="fas fa-calendar-times fa-4x text-muted mb-3"></i>
+                        <h4 class="text-muted">暂无符合条件的比赛</h4>
+                        <p class="text-muted">请尝试调整筛选条件或稍后再试</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Info Section -->
+    <section class="slice slice-lg bg-section-secondary">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2>支持的竞赛平台</h2>
+                    <p class="lead text-muted">覆盖国内外主流算法竞赛平台</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="platform-card">
+                        <div class="platform-icon" style="background: #1f8acb;">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h5>Codeforces</h5>
+                        <p class="text-muted">全球顶级算法竞赛平台</p>
+                        <a href="https://codeforces.com/" target="_blank" class="btn btn-sm btn-outline-primary">
+                            访问平台 <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="platform-card">
+                        <div class="platform-icon" style="background: #000;">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <h5>AtCoder</h5>
+                        <p class="text-muted">日本顶级算法竞赛平台</p>
+                        <a href="https://atcoder.jp/" target="_blank" class="btn btn-sm btn-outline-primary">
+                            访问平台 <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="platform-card">
+                        <div class="platform-icon" style="background: #ffa116;">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h5>LeetCode</h5>
+                        <p class="text-muted">面试刷题与周赛平台</p>
+                        <a href="https://leetcode.cn/" target="_blank" class="btn btn-sm btn-outline-primary">
+                            访问平台 <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="platform-card">
+                        <div class="platform-icon" style="background: #0e90d2;">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <h5>洛谷 Luogu</h5>
+                        <p class="text-muted">国内最大算法学习平台</p>
+                        <a href="https://www.luogu.com.cn/" target="_blank" class="btn btn-sm btn-outline-primary">
+                            访问平台 <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="platform-card">
+                        <div class="platform-icon" style="background: #2ec866;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h5>牛客网</h5>
+                        <p class="text-muted">IT求职与竞赛平台</p>
+                        <a href="https://www.nowcoder.com/" target="_blank" class="btn btn-sm btn-outline-primary">
+                            访问平台 <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="platform-card">
+                        <div class="platform-icon" style="background: #00a1e9;">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h5>AcWing</h5>
+                        <p class="text-muted">算法学习与竞赛平台</p>
+                        <a href="https://www.acwing.com/" target="_blank" class="btn btn-sm btn-outline-primary">
+                            访问平台 <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="platform-card">
+                        <div class="platform-icon" style="background: #e74c3c;">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h5>CodeChef</h5>
+                        <p class="text-muted">印度顶级竞赛平台</p>
+                        <a href="https://www.codechef.com/" target="_blank" class="btn btn-sm btn-outline-primary">
+                            访问平台 <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="platform-card">
+                        <div class="platform-icon" style="background: #39424e;">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h5>TopCoder</h5>
+                        <p class="text-muted">老牌算法竞赛平台</p>
+                        <a href="https://www.topcoder.com/" target="_blank" class="btn btn-sm btn-outline-primary">
+                            访问平台 <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="slice slice-lg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="tips-card">
+                        <h4><i class="fas fa-lightbulb text-warning"></i> 参赛小贴士</h4>
+                        <ul class="tips-list">
+                            <li><strong>提前注册：</strong>建议在比赛开始前至少提前 1 小时完成注册</li>
+                            <li><strong>检查时区：</strong>注意比赛时间的时区，本页面已自动转换为北京时间</li>
+                            <li><strong>准备环境：</strong>提前配置好编程环境和常用代码模板</li>
+                            <li><strong>阅读规则：</strong>每个平台的比赛规则可能不同，请仔细阅读</li>
+                            <li><strong>保持冷静：</strong>比赛中遇到困难不要慌张，合理分配时间</li>
+                            <li><strong>赛后总结：</strong>比赛结束后要及时复盘，学习他人的优秀解法</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white">
+        <div class="container">
+            <div class="row pt-5 pb-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a href="index.html">
+                        <img src="assets/img/brand/favicon.jpg" alt="TUST-ACM Logo" style="height: 40px;" class="mb-3">
+                    </a>
+                    <p class="mt-3 text-sm opacity-8">
+                        TUST-ACM 算法实验室致力于培养优秀的算法竞赛选手和软件工程师。
+                    </p>
+                </div>
+                <div class="col-lg-2 col-6 mb-4 mb-lg-0">
+                    <h6 class="heading mb-3">快速链接</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white-50">学习路径</a></li>
+                        <li><a href="resources-hub.html" class="text-white-50">学习资源</a></li>
+                        <li><a href="contests.html" class="text-white-50">竞赛赛程</a></li>
+                        <li><a href="about.html" class="text-white-50">实验室介绍</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 mb-4 mb-lg-0">
+                    <h6 class="heading mb-3">竞赛平台</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="https://codeforces.com/" target="_blank" class="text-white-50">Codeforces</a></li>
+                        <li><a href="https://atcoder.jp/" target="_blank" class="text-white-50">AtCoder</a></li>
+                        <li><a href="https://leetcode.cn/" target="_blank" class="text-white-50">LeetCode</a></li>
+                        <li><a href="https://www.luogu.com.cn/" target="_blank" class="text-white-50">洛谷</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="heading mb-3">关注我们</h6>
+                    <div class="mt-4">
+                        <a href="https://codeforces.com/" target="_blank" class="btn btn-sm btn-white btn-icon-only rounded-circle mr-2">
+                            <span class="btn-inner--icon"><i class="fas fa-code"></i></span>
+                        </a>
+                        <a href="https://github.com/" target="_blank" class="btn btn-sm btn-white btn-icon-only rounded-circle">
+                            <span class="btn-inner--icon"><i class="fab fa-github"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="divider divider-fade divider-dark my-4">
+            <div class="row align-items-center justify-content-md-between pb-4">
+                <div class="col-md-6">
+                    <div class="copyright text-sm font-weight-bold text-center text-md-left">
+                        &copy; 2025 Sen Wang. All rights reserved.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav justify-content-center justify-content-md-end mt-3 mt-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50" href="#">使用条款</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50" href="#">隐私政策</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core JS -->
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/svg-injector/dist/svg-injector.min.js"></script>
+    <script src="assets/libs/feather-icons/dist/feather.min.js"></script>
+    <!-- Quick JS -->
+    <script src="assets/js/quick-website.js"></script>
+    <!-- Contest Schedule JS -->
+    <script src="assets/js/contest-schedule.js"></script>
+    
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        });
+    </script>
+</body>
+
+</html>
