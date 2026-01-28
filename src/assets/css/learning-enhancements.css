@@ -399,6 +399,64 @@
     border-bottom: none;
 }
 
+/* 计划摘要卡片 */
+.plan-summary-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    color: #32325d;
+}
+
+.summary-item {
+    padding: 12px;
+    background: #f7f8fc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.summary-item strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #5e72e4;
+}
+
+.weekly-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f7f8fc;
+    border-radius: 6px;
+}
+
+.breakdown-label {
+    font-weight: 500;
+}
+
+.breakdown-value {
+    font-weight: 700;
+    color: #5e72e4;
+}
+
+.tips-list-simple {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tips-list-simple li {
+    padding: 8px 12px;
+    background: #f7f8fc;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border-left: 3px solid #5e72e4;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .statistics-panel {

@@ -120,6 +120,7 @@ class LearningTracker {
                     <div class="row">
                         <div class="col-lg-12">
                             <h3 class="mb-4">📊 我的学习进度</h3>
+                            <p class="text-muted mb-4">查看你的学习计划和进度统计</p>
                         </div>
                     </div>
                     <div class="row" id="progress-cards">
@@ -156,13 +157,18 @@ class LearningTracker {
             </div>
         `;
 
-        // 在学习路径卡片之前插入仪表板
-        const learningPathsSection = document.querySelector('.learning-paths-section');
-        if (learningPathsSection) {
+        // 查找学习计划器section，在它之前插入仪表板
+        const studyPlannerSection = document.querySelector('#study-planner-section');
+        if (studyPlannerSection) {
             const dashboard = document.createElement('section');
             dashboard.className = 'slice slice-lg bg-section-secondary';
+            dashboard.id = 'progress-dashboard-section';
             dashboard.innerHTML = dashboardHTML;
-            learningPathsSection.parentNode.insertBefore(dashboard, learningPathsSection);
+            studyPlannerSection.parentNode.insertBefore(dashboard, studyPlannerSection);
+            
+            console.log('学习进度仪表板已渲染');
+        } else {
+            console.warn('未找到学习计划器section，无法插入进度仪表板');
         }
     }
 
@@ -193,9 +199,14 @@ class LearningTracker {
             { id: 'ai', name: 'AI/机器学习', icon: '🤖', color: '#8965e0' }
         ];
 
+        // 加载保存的学习计划
+        const savedPlans = localStorage.getItem('tust-acm-study-plans');
+        const plans = savedPlans ? JSON.parse(savedPlans) : {};
+
         progressCardsContainer.innerHTML = paths.map(path => {
             const progress = this.getPathProgress(path.id);
             const isActive = this.progress.paths[path.id];
+            const hasPlan = plans[path.id];
             
             return `
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -204,6 +215,19 @@ class LearningTracker {
                             <span class="path-icon">${path.icon}</span>
                             <h5>${path.name}</h5>
                         </div>
+                        ${hasPlan ? `
+                            <div class="mb-3 p-3" style="background: #f7f8fc; border-radius: 8px;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <small class="text-muted">📅 学习计划</small>
+                                    <span class="badge badge-success">已制定</span>
+                                </div>
+                                <div class="small">
+                                    <div class="mb-1">⏰ 每周 ${hasPlan.weeklyHours} 小时</div>
+                                    <div class="mb-1">🎯 预计 ${hasPlan.estimatedCompletion.months} 个月完成</div>
+                                    <div>📊 共 ${hasPlan.phases.length} 个学习阶段</div>
+                                </div>
+                            </div>
+                        ` : ''}
                         <div class="progress-bar-container">
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" 
@@ -220,7 +244,7 @@ class LearningTracker {
                         ` : `
                             <button class="btn btn-sm btn-outline-primary start-learning-btn" 
                                     data-path="${path.id}">
-                                开始学习
+                                ${hasPlan ? '开始学习' : '制定学习计划'}
                             </button>
                         `}
                     </div>
@@ -246,7 +270,29 @@ class LearningTracker {
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('start-learning-btn')) {
                 const pathId = e.target.dataset.path;
-                this.startLearningPath(pathId);
+                
+                // 检查是否已有学习计划
+                const savedPlans = localStorage.getItem('tust-acm-study-plans');
+                const plans = savedPlans ? JSON.parse(savedPlans) : {};
+                
+                if (plans[pathId]) {
+                    // 已有计划，开始学习
+                    this.startLearningPath(pathId);
+                } else {
+                    // 没有计划，跳转到学习计划器
+                    const plannerSection = document.querySelector('#study-planner-section');
+                    if (plannerSection) {
+                        plannerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        // 自动选择对应的学习路径
+                        setTimeout(() => {
+                            const pathSelect = document.getElementById('plan-path');
+                            if (pathSelect) {
+                                pathSelect.value = pathId;
+                                pathSelect.focus();
+                            }
+                        }, 500);
+                    }
+                }
             }
 
             // 监听主题完成复选框

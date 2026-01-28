@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习进度测试 - TUST-ACM</title>
+    <link rel="stylesheet" href="src/assets/libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/assets/css/learning-enhancements.css">
+    <style>
+        body {
+            padding: 20px;
+            background: #f7f8fc;
+        }
+        .test-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .test-button {
+            margin: 10px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">🧪 学习进度功能测试</h1>
+        
+        <div class="test-section">
+            <h3>测试说明</h3>
+            <p>这个页面用于测试学习进度追踪功能。你可以：</p>
+            <ul>
+                <li>生成测试学习计划</li>
+                <li>查看进度仪表板</li>
+                <li>测试数据保存和读取</li>
+                <li>清除测试数据</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h3>快速操作</h3>
+            <button class="btn btn-primary test-button" onclick="createTestPlan('algorithm')">
+                生成算法竞赛计划
+            </button>
+            <button class="btn btn-success test-button" onclick="createTestPlan('python')">
+                生成Python计划
+            </button>
+            <button class="btn btn-info test-button" onclick="createTestPlan('frontend')">
+                生成前端计划
+            </button>
+            <button class="btn btn-warning test-button" onclick="viewSavedPlans()">
+                查看已保存计划
+            </button>
+            <button class="btn btn-danger test-button" onclick="clearAllData()">
+                清除所有数据
+            </button>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 进度仪表板预览</h3>
+            <div id="dashboard-container"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>💾 LocalStorage 数据</h3>
+            <pre id="storage-data" style="background: #f7f8fc; padding: 15px; border-radius: 8px; max-height: 400px; overflow-y: auto;"></pre>
+        </div>
+    </div>
+
+    <script src="src/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/assets/js/study-planner.js"></script>
+    <script src="src/assets/js/learning-tracker.js"></script>
+    
+    <script>
+        // 创建测试计划
+        function createTestPlan(pathId) {
+            const planner = new StudyPlanner();
+            const plan = planner.createPlan({
+                pathId: pathId,
+                weeklyHours: 15,
+                targetDate: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                level: 'intermediate',
+                goal: 'interest',
+                hasFoundation: false,
+                preferredDays: ['1', '2', '3', '4', '5']
+            });
+            
+            if (plan) {
+                alert(`✅ ${plan.pathName} 学习计划已生成！`);
+                refreshDashboard();
+                displayStorageData();
+            } else {
+                alert('❌ 计划生成失败');
+            }
+        }
+
+        // 查看已保存的计划
+        function viewSavedPlans() {
+            const saved = localStorage.getItem('tust-acm-study-plans');
+            if (saved) {
+                const plans = JSON.parse(saved);
+                const planNames = Object.keys(plans).map(key => {
+                    const pathNames = {
+                        'algorithm': '算法竞赛',
+                        'cpp': 'C/C++开发',
+                        'python': 'Python开发',
+                        'frontend': '前端开发',
+                        'backend': '后端开发',
+                        'ai': 'AI/机器学习'
+                    };
+                    return pathNames[key] || key;
+                }).join(', ');
+                alert(`已保存的计划：\n${planNames}`);
+            } else {
+                alert('还没有保存任何计划');
+            }
+        }
+
+        // 清除所有数据
+        function clearAllData() {
+            if (confirm('确定要清除所有学习数据吗？此操作不可恢复！')) {
+                localStorage.removeItem('tust-acm-study-plans');
+                localStorage.removeItem('tust-acm-learning-progress');
+                alert('✅ 所有数据已清除');
+                refreshDashboard();
+                displayStorageData();
+            }
+        }
+
+        // 刷新仪表板
+        function refreshDashboard() {
+            const container = document.getElementById('dashboard-container');
+            container.innerHTML = '';
+            
+            // 创建进度卡片容器
+            const row = document.createElement('div');
+            row.className = 'row';
+            row.id = 'progress-cards';
+            container.appendChild(row);
+            
+            // 创建统计面板
+            const statsPanel = document.createElement('div');
+            statsPanel.className = 'statistics-panel mt-4';
+            statsPanel.innerHTML = `
+                <div class="stat-item">
+                    <span class="stat-icon">🎯</span>
+                    <div class="stat-content">
+                        <h4 id="total-achievements">0</h4>
+                        <p>已获成就</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">📚</span>
+                    <div class="stat-content">
+                        <h4 id="active-paths">0</h4>
+                        <p>学习路径</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">⏱️</span>
+                    <div class="stat-content">
+                        <h4 id="study-days">0</h4>
+                        <p>学习天数</p>
+                    </div>
+                </div>
+            `;
+            container.appendChild(statsPanel);
+            
+            // 初始化学习追踪器
+            if (window.learningTracker) {
+                window.learningTracker.updateStatistics();
+            } else {
+                window.learningTracker = new LearningTracker();
+            }
+        }
+
+        // 显示 LocalStorage 数据
+        function displayStorageData() {
+            const plans = localStorage.getItem('tust-acm-study-plans');
+            const progress = localStorage.getItem('tust-acm-learning-progress');
+            
+            const data = {
+                'study-plans': plans ? JSON.parse(plans) : null,
+                'learning-progress': progress ? JSON.parse(progress) : null
+            };
+            
+            document.getElementById('storage-data').textContent = JSON.stringify(data, null, 2);
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshDashboard();
+            displayStorageData();
+        });
+    </script>
+</body>
+</html>
