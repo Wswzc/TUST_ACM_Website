@@ -81,13 +81,26 @@ class ContestSchedule {
 
     getCodeforcesContests() {
         const now = new Date();
+        // Codeforces 比赛通常在北京时间晚上 22:35 或 23:35
+        const contest1 = new Date(now);
+        contest1.setDate(now.getDate() + 2);
+        contest1.setHours(22, 35, 0, 0);
+
+        const contest2 = new Date(now);
+        contest2.setDate(now.getDate() + 4);
+        contest2.setHours(23, 35, 0, 0);
+
+        const contest3 = new Date(now);
+        contest3.setDate(now.getDate() + 7);
+        contest3.setHours(22, 35, 0, 0);
+
         return [
             {
                 id: 'cf-1',
                 platform: 'codeforces',
                 platformName: 'Codeforces',
                 name: 'Codeforces Round #920 (Div. 2)',
-                startTime: new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000),
+                startTime: contest1,
                 duration: 2 * 60, // 分钟
                 url: 'https://codeforces.com/contests',
                 type: 'Rated',
@@ -98,7 +111,7 @@ class ContestSchedule {
                 platform: 'codeforces',
                 platformName: 'Codeforces',
                 name: 'Educational Codeforces Round 162',
-                startTime: new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000),
+                startTime: contest2,
                 duration: 2 * 60,
                 url: 'https://codeforces.com/contests',
                 type: 'Rated',
@@ -109,7 +122,7 @@ class ContestSchedule {
                 platform: 'codeforces',
                 platformName: 'Codeforces',
                 name: 'Codeforces Round #921 (Div. 1)',
-                startTime: new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000),
+                startTime: contest3,
                 duration: 2.5 * 60,
                 url: 'https://codeforces.com/contests',
                 type: 'Rated',
@@ -120,13 +133,27 @@ class ContestSchedule {
 
     getAtCoderContests() {
         const now = new Date();
+        // AtCoder ABC 通常在周六晚上 20:00 (北京时间)
+        const nextSaturday = new Date(now);
+        const daysUntilSaturday = (6 - now.getDay() + 7) % 7 || 7;
+        nextSaturday.setDate(now.getDate() + daysUntilSaturday);
+        nextSaturday.setHours(20, 0, 0, 0);
+
+        const contest2 = new Date(nextSaturday);
+        contest2.setDate(nextSaturday.getDate() + 7);
+        contest2.setHours(20, 0, 0, 0);
+
+        const contest3 = new Date(nextSaturday);
+        contest3.setDate(nextSaturday.getDate() + 14);
+        contest3.setHours(20, 0, 0, 0);
+
         return [
             {
                 id: 'ac-1',
                 platform: 'atcoder',
                 platformName: 'AtCoder',
                 name: 'AtCoder Beginner Contest 340',
-                startTime: new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000),
+                startTime: nextSaturday,
                 duration: 100,
                 url: 'https://atcoder.jp/contests/',
                 type: 'Rated',
@@ -137,7 +164,7 @@ class ContestSchedule {
                 platform: 'atcoder',
                 platformName: 'AtCoder',
                 name: 'AtCoder Regular Contest 170',
-                startTime: new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000),
+                startTime: contest2,
                 duration: 120,
                 url: 'https://atcoder.jp/contests/',
                 type: 'Rated',
@@ -148,7 +175,7 @@ class ContestSchedule {
                 platform: 'atcoder',
                 platformName: 'AtCoder',
                 name: 'AtCoder Grand Contest 062',
-                startTime: new Date(now.getTime() + 10 * 24 * 60 * 60 * 1000),
+                startTime: contest3,
                 duration: 150,
                 url: 'https://atcoder.jp/contests/',
                 type: 'Rated',
@@ -159,10 +186,16 @@ class ContestSchedule {
 
     getLeetCodeContests() {
         const now = new Date();
-        // LeetCode 周赛通常在周日上午 10:30
+        // LeetCode 周赛通常在周日上午 10:30 (北京时间)
         const nextSunday = new Date(now);
-        nextSunday.setDate(now.getDate() + (7 - now.getDay()));
+        const daysUntilSunday = (7 - now.getDay()) % 7 || 7; // 如果今天是周日，则取下周日
+        nextSunday.setDate(now.getDate() + daysUntilSunday);
         nextSunday.setHours(10, 30, 0, 0);
+
+        // 双周赛通常在周六晚上 22:30 (北京时间)
+        const nextSaturday = new Date(nextSunday);
+        nextSaturday.setDate(nextSunday.getDate() - 1);
+        nextSaturday.setHours(22, 30, 0, 0);
 
         return [
             {
@@ -181,7 +214,7 @@ class ContestSchedule {
                 platform: 'leetcode',
                 platformName: 'LeetCode',
                 name: 'LeetCode 双周赛 123',
-                startTime: new Date(nextSunday.getTime() + 7 * 24 * 60 * 60 * 1000 - 12 * 60 * 60 * 1000),
+                startTime: nextSaturday,
                 duration: 90,
                 url: 'https://leetcode.cn/contest/',
                 type: 'Rated',
@@ -192,13 +225,22 @@ class ContestSchedule {
 
     getLuoguContests() {
         const now = new Date();
+        // 洛谷月赛通常在每月第一个周六晚上 19:00
+        const contest1 = new Date(now);
+        contest1.setDate(now.getDate() + 3);
+        contest1.setHours(19, 0, 0, 0);
+
+        const contest2 = new Date(now);
+        contest2.setDate(now.getDate() + 6);
+        contest2.setHours(14, 0, 0, 0);
+
         return [
             {
                 id: 'lg-1',
                 platform: 'luogu',
                 platformName: '洛谷',
                 name: '洛谷月赛 2025.02',
-                startTime: new Date(now.getTime() + 3 * 24 * 60 * 60 * 1000),
+                startTime: contest1,
                 duration: 180,
                 url: 'https://www.luogu.com.cn/contest/list',
                 type: 'Rated',
@@ -209,7 +251,7 @@ class ContestSchedule {
                 platform: 'luogu',
                 platformName: '洛谷',
                 name: 'CSP-S 2025 模拟赛',
-                startTime: new Date(now.getTime() + 6 * 24 * 60 * 60 * 1000),
+                startTime: contest2,
                 duration: 240,
                 url: 'https://www.luogu.com.cn/contest/list',
                 type: 'Unrated',
@@ -220,13 +262,22 @@ class ContestSchedule {
 
     getNowCoderContests() {
         const now = new Date();
+        // 牛客比赛通常在周六晚上 19:00 或 20:00
+        const contest1 = new Date(now);
+        contest1.setDate(now.getDate() + 2);
+        contest1.setHours(19, 0, 0, 0);
+
+        const contest2 = new Date(now);
+        contest2.setDate(now.getDate() + 5);
+        contest2.setHours(20, 0, 0, 0);
+
         return [
             {
                 id: 'nc-1',
                 platform: 'nowcoder',
                 platformName: '牛客',
                 name: '牛客小白月赛 82',
-                startTime: new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000),
+                startTime: contest1,
                 duration: 120,
                 url: 'https://ac.nowcoder.com/acm/contest/vip-index',
                 type: 'Rated',
@@ -237,7 +288,7 @@ class ContestSchedule {
                 platform: 'nowcoder',
                 platformName: '牛客',
                 name: '牛客周赛 Round 28',
-                startTime: new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000),
+                startTime: contest2,
                 duration: 120,
                 url: 'https://ac.nowcoder.com/acm/contest/vip-index',
                 type: 'Rated',
@@ -248,13 +299,19 @@ class ContestSchedule {
 
     getAcWingContests() {
         const now = new Date();
+        // AcWing 周赛通常在周六晚上 20:00
+        const nextSaturday = new Date(now);
+        const daysUntilSaturday = (6 - now.getDay() + 7) % 7 || 7;
+        nextSaturday.setDate(now.getDate() + daysUntilSaturday);
+        nextSaturday.setHours(20, 0, 0, 0);
+
         return [
             {
                 id: 'aw-1',
                 platform: 'acwing',
                 platformName: 'AcWing',
                 name: 'AcWing 周赛 138',
-                startTime: new Date(now.getTime() + 1 * 24 * 60 * 60 * 1000),
+                startTime: nextSaturday,
                 duration: 90,
                 url: 'https://www.acwing.com/activity/',
                 type: 'Rated',
@@ -491,7 +548,9 @@ class ContestSchedule {
     formatTime(date) {
         const hours = String(date.getHours()).padStart(2, '0');
         const minutes = String(date.getMinutes()).padStart(2, '0');
-        return `${hours}:${minutes}`;
+        // 添加时区信息
+        const timezone = 'UTC+8';
+        return `${hours}:${minutes} (${timezone})`;
     }
 
     formatDuration(minutes) {
