@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据真实性测试 - TUST-ACM</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f7f8fc;
+        }
+        h1 {
+            color: #32325d;
+            text-align: center;
+        }
+        .test-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .test-section h2 {
+            color: #5e72e4;
+            margin-bottom: 20px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-success {
+            background: #2dce89;
+            color: white;
+        }
+        .btn-danger {
+            background: #f5365c;
+            color: white;
+        }
+        .btn-info {
+            background: #11cdef;
+            color: white;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .data-display {
+            background: #f7f8fc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .status.real {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.fake {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status.empty {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 数据真实性测试工具</h1>
+    
+    <div class="test-section">
+        <h2>📊 当前数据状态</h2>
+        <div class="button-group">
+            <button class="btn-info" onclick="checkAllData()">检查所有数据</button>
+            <button class="btn-primary" onclick="viewDashboard()">查看仪表板</button>
+            <button class="btn-danger" onclick="clearAllData()">清除所有数据</button>
+        </div>
+        <div id="data-status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🧪 生成测试数据</h2>
+        <div class="info-box">
+            <strong>提示：</strong>点击下面的按钮生成测试数据，然后刷新仪表板查看效果
+        </div>
+        <div class="button-group">
+            <button class="btn-success" onclick="generateCheckinData()">生成打卡数据（7天）</button>
+            <button class="btn-success" onclick="generateStudyPlan()">生成学习计划</button>
+            <button class="btn-success" onclick="generateProgress()">生成学习进度</button>
+            <button class="btn-primary" onclick="generateAllData()">一键生成全部数据</button>
+        </div>
+        <div id="generate-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 查看原始数据</h2>
+        <div class="button-group">
+            <button class="btn-info" onclick="viewCheckinData()">查看打卡记录</button>
+            <button class="btn-info" onclick="viewStudyPlans()">查看学习计划</button>
+            <button class="btn-info" onclick="viewProgress()">查看学习进度</button>
+        </div>
+        <div class="data-display" id="raw-data"></div>
+    </div>
+
+    <script>
+        // 检查所有数据
+        function checkAllData() {
+            const checkin = localStorage.getItem('tust-acm-checkin-records');
+            const plans = localStorage.getItem('tust-acm-study-plans');
+            const progress = localStorage.getItem('tust-acm-learning-progress');
+            
+            let html = '<div style="line-height: 2;">';
+            html += `<div>📅 打卡记录: ${getStatus(checkin)}</div>`;
+            html += `<div>📚 学习计划: ${getStatus(plans)}</div>`;
+            html += `<div>📊 学习进度: ${getStatus(progress)}</div>`;
+            html += '</div>';
+            
+            if (!checkin && !plans && !progress) {
+                html += '<div class="info-box" style="margin-top: 20px;">当前没有任何数据。点击"生成测试数据"按钮创建测试数据。</div>';
+            } else {
+                html += '<div class="success-box" style="margin-top: 20px;">✅ 数据已存在！所有图表都会使用这些真实数据。</div>';
+            }
+            
+            document.getElementById('data-status').innerHTML = html;
+        }
+        
+        function getStatus(data) {
+            if (!data) {
+                return '<span class="status empty">无数据</span>';
+            }
+            try {
+                const parsed = JSON.parse(data);
+                const size = JSON.stringify(parsed).length;
+                return `<span class="status real">✅ 真实数据 (${size} 字节)</span>`;
+            } catch (e) {
+                return '<span class="status fake">❌ 数据损坏</span>';
+            }
+        }
+        
+        // 生成打卡数据
+        function generateCheckinData() {
+            const checkinRecords = {
+                checkins: [],
+                streak: 7,
+                totalDays: 7,
+                lastCheckin: new Date().toISOString().split('T')[0]
+            };
+            
+            for (let i = 0; i < 7; i++) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                checkinRecords.checkins.push(date.toISOString().split('T')[0]);
+            }
+            
+            localStorage.setItem('tust-acm-checkin-records', JSON.stringify(checkinRecords));
+            showResult('✅ 打卡数据已生成！包含最近7天的打卡记录。');
+            checkAllData();
+        }
+        
+        // 生成学习计划
+        function generateStudyPlan() {
+            const plans = {
+                algorithm: {
+                    pathId: 'algorithm',
+                    pathName: '算法竞赛',
+                    weeklyHours: 15,
+                    targetDate: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                    level: 'intermediate',
+                    goal: 'interest',
+                    phases: [{}, {}, {}, {}],
+                    milestones: [],
+                    estimatedCompletion: {
+                        months: 9,
+                        date: new Date(Date.now() + 270 * 24 * 60 * 60 * 1000).toLocaleDateString('zh-CN'),
+                        totalHours: 540
+                    },
+                    weeklySchedule: {
+                        totalHours: 15,
+                        daysPerWeek: 5,
+                        hoursPerDay: 3,
+                        breakdown: {
+                            theory: 4.5,
+                            practice: 7.5,
+                            review: 3
+                        }
+                    },
+                    tips: ['每天至少做2-3道题', '参加周赛保持手感', '建立错题本']
+                },
+                python: {
+                    pathId: 'python',
+                    pathName: 'Python开发',
+                    weeklyHours: 12,
+                    targetDate: new Date(Date.now() + 120 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                    level: 'beginner',
+                    goal: 'job',
+                    phases: [{}, {}, {}],
+                    milestones: [],
+                    estimatedCompletion: {
+                        months: 5,
+                        date: new Date(Date.now() + 150 * 24 * 60 * 60 * 1000).toLocaleDateString('zh-CN'),
+                        totalHours: 240
+                    },
+                    weeklySchedule: {
+                        totalHours: 12,
+                        daysPerWeek: 4,
+                        hoursPerDay: 3,
+                        breakdown: {
+                            theory: 3.6,
+                            practice: 6,
+                            review: 2.4
+                        }
+                    },
+                    tips: ['多做小项目练习', '学习常用库', '注重代码规范']
+                }
+            };
+            
+            localStorage.setItem('tust-acm-study-plans', JSON.stringify(plans));
+            showResult('✅ 学习计划已生成！包含算法竞赛和Python开发两个计划。');
+            checkAllData();
+        }
+        
+        // 生成学习进度
+        function generateProgress() {
+            const progress = {
+                paths: {
+                    algorithm: {
+                        completedTopics: ['topic1', 'topic2', 'topic3', 'topic4', 'topic5', 'topic6', 'topic7', 'topic8', 'topic9', 'topic10'],
+                        startDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+                        lastActivity: new Date().toISOString()
+                    },
+                    python: {
+                        completedTopics: ['topic1', 'topic2', 'topic3', 'topic4', 'topic5', 'topic6', 'topic7', 'topic8'],
+                        startDate: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
+                        lastActivity: new Date().toISOString()
+                    },
+                    frontend: {
+                        completedTopics: ['topic1', 'topic2', 'topic3', 'topic4', 'topic5'],
+                        startDate: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+                        lastActivity: new Date().toISOString()
+                    }
+                },
+                achievements: ['first-step', 'quarter', 'halfway'],
+                startDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+                totalStudyTime: 0
+            };
+            
+            localStorage.setItem('tust-acm-learning-progress', JSON.stringify(progress));
+            showResult('✅ 学习进度已生成！包含3个学习路径的进度数据。');
+            checkAllData();
+        }
+        
+        // 一键生成全部数据
+        function generateAllData() {
+            generateCheckinData();
+            generateStudyPlan();
+            generateProgress();
+            showResult('🎉 所有测试数据已生成！现在可以查看仪表板了。', true);
+        }
+        
+        // 查看原始数据
+        function viewCheckinData() {
+            const data = localStorage.getItem('tust-acm-checkin-records');
+            displayRawData('打卡记录', data);
+        }
+        
+        function viewStudyPlans() {
+            const data = localStorage.getItem('tust-acm-study-plans');
+            displayRawData('学习计划', data);
+        }
+        
+        function viewProgress() {
+            const data = localStorage.getItem('tust-acm-learning-progress');
+            displayRawData('学习进度', data);
+        }
+        
+        function displayRawData(title, data) {
+            const container = document.getElementById('raw-data');
+            if (!data) {
+                container.innerHTML = `<p style="color: #8898aa;">暂无${title}数据</p>`;
+                return;
+            }
+            
+            try {
+                const parsed = JSON.parse(data);
+                container.innerHTML = `<h4>${title}</h4><pre>${JSON.stringify(parsed, null, 2)}</pre>`;
+            } catch (e) {
+                container.innerHTML = `<p style="color: #f5365c;">数据解析失败: ${e.message}</p>`;
+            }
+        }
+        
+        // 清除所有数据
+        function clearAllData() {
+            if (confirm('确定要清除所有数据吗？此操作不可恢复！')) {
+                localStorage.removeItem('tust-acm-checkin-records');
+                localStorage.removeItem('tust-acm-study-plans');
+                localStorage.removeItem('tust-acm-learning-progress');
+                showResult('✅ 所有数据已清除！');
+                checkAllData();
+                document.getElementById('raw-data').innerHTML = '';
+            }
+        }
+        
+        // 查看仪表板
+        function viewDashboard() {
+            window.open('src/my-dashboard.html', '_blank');
+        }
+        
+        // 显示结果
+        function showResult(message, isSuccess = false) {
+            const container = document.getElementById('generate-result');
+            const className = isSuccess ? 'success-box' : 'info-box';
+            container.innerHTML = `<div class="${className}">${message}</div>`;
+            
+            if (isSuccess) {
+                setTimeout(() => {
+                    container.innerHTML += '<div class="info-box" style="margin-top: 10px;">💡 点击"查看仪表板"按钮，或直接访问 <a href="src/my-dashboard.html" target="_blank">my-dashboard.html</a></div>';
+                }, 500);
+            }
+        }
+        
+        // 页面加载时检查数据
+        window.onload = function() {
+            checkAllData();
+        };
+    </script>
+</body>
+</html>
