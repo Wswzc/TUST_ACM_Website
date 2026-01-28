@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact 页面测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .status {
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .test-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .checklist li:before {
+            content: "→ ";
+            color: #007bff;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Contact 页面加载测试</h1>
+    
+    <div class="test-card">
+        <h2>问题诊断</h2>
+        <p>如果 contact.html 页面无法加载，可能的原因：</p>
+        <ul class="checklist">
+            <li>浏览器缓存问题</li>
+            <li>JavaScript 错误</li>
+            <li>CSS 文件加载失败</li>
+            <li>资源路径错误</li>
+            <li>HTML 结构问题</li>
+        </ul>
+    </div>
+
+    <div class="test-card">
+        <h2>快速测试</h2>
+        <button onclick="testContactPage()">测试 Contact 页面</button>
+        <button onclick="openInNewTab()">在新标签页打开</button>
+        <button onclick="checkConsole()">查看控制台说明</button>
+        
+        <div id="testResult" class="test-result"></div>
+    </div>
+
+    <div class="test-card">
+        <h2>解决方案</h2>
+        <div class="info">
+            <strong>方法 1: 清除浏览器缓存</strong>
+            <ul>
+                <li>按 Ctrl + Shift + Delete (Windows) 或 Cmd + Shift + Delete (Mac)</li>
+                <li>选择"缓存的图片和文件"</li>
+                <li>点击"清除数据"</li>
+            </ul>
+        </div>
+        
+        <div class="info" style="margin-top: 15px;">
+            <strong>方法 2: 强制刷新</strong>
+            <ul>
+                <li>按 Ctrl + F5 (Windows) 或 Cmd + Shift + R (Mac)</li>
+                <li>这会跳过缓存重新加载页面</li>
+            </ul>
+        </div>
+        
+        <div class="info" style="margin-top: 15px;">
+            <strong>方法 3: 使用隐私/无痕模式</strong>
+            <ul>
+                <li>按 Ctrl + Shift + N (Chrome) 或 Ctrl + Shift + P (Firefox)</li>
+                <li>在无痕窗口中打开 contact.html</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-card">
+        <h2>页面预览</h2>
+        <p>下方是 contact.html 的内嵌预览：</p>
+        <iframe id="contactFrame" src="src/contact.html"></iframe>
+    </div>
+
+    <div class="test-card">
+        <h2>文件信息</h2>
+        <div id="fileInfo">
+            <p>正在检查文件...</p>
+        </div>
+    </div>
+
+    <script>
+        function testContactPage() {
+            const resultDiv = document.getElementById('testResult');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'test-result info';
+            resultDiv.innerHTML = '<strong>测试中...</strong><br>正在检查 contact.html 页面...';
+            
+            fetch('src/contact.html')
+                .then(response => {
+                    if (response.ok) {
+                        resultDiv.className = 'test-result success';
+                        resultDiv.innerHTML = `
+                            <strong>✓ 文件加载成功！</strong><br>
+                            状态码: ${response.status}<br>
+                            文件大小: ${(response.headers.get('content-length') / 1024).toFixed(2)} KB<br>
+                            <br>
+                            如果页面仍然无法显示，请：<br>
+                            1. 清除浏览器缓存<br>
+                            2. 按 F12 打开开发者工具查看控制台错误<br>
+                            3. 检查网络标签页中的资源加载情况
+                        `;
+                    } else {
+                        resultDiv.className = 'test-result error';
+                        resultDiv.innerHTML = `<strong>✗ 文件加载失败</strong><br>状态码: ${response.status}`;
+                    }
+                })
+                .catch(error => {
+                    resultDiv.className = 'test-result error';
+                    resultDiv.innerHTML = `<strong>✗ 加载错误</strong><br>${error.message}`;
+                });
+        }
+
+        function openInNewTab() {
+            window.open('src/contact.html', '_blank');
+        }
+
+        function checkConsole() {
+            alert('请按 F12 打开浏览器开发者工具，然后：\n\n1. 切换到"Console"（控制台）标签\n2. 刷新页面\n3. 查看是否有红色错误信息\n4. 切换到"Network"（网络）标签\n5. 查看哪些资源加载失败（红色）');
+        }
+
+        // 自动检查文件
+        window.addEventListener('load', function() {
+            fetch('src/contact.html')
+                .then(response => response.text())
+                .then(html => {
+                    const fileInfo = document.getElementById('fileInfo');
+                    const lines = html.split('\n').length;
+                    const size = new Blob([html]).size;
+                    
+                    fileInfo.innerHTML = `
+                        <div class="success">
+                            <strong>✓ 文件存在且可读取</strong><br>
+                            文件大小: ${(size / 1024).toFixed(2)} KB<br>
+                            行数: ${lines}<br>
+                            字符数: ${html.length}
+                        </div>
+                    `;
+                })
+                .catch(error => {
+                    const fileInfo = document.getElementById('fileInfo');
+                    fileInfo.innerHTML = `
+                        <div class="error">
+                            <strong>✗ 无法读取文件</strong><br>
+                            错误: ${error.message}
+                        </div>
+                    `;
+                });
+        });
+
+        // 监听 iframe 加载
+        document.getElementById('contactFrame').addEventListener('load', function() {
+            console.log('✓ Contact 页面已在 iframe 中加载');
+        });
+
+        document.getElementById('contactFrame').addEventListener('error', function() {
+            console.error('✗ Contact 页面加载失败');
+        });
+    </script>
+</body>
+</html>

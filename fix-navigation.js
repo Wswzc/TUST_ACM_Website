@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+// 统一导航栏和页脚的修复脚本
+const fs = require('fs');
+const path = require('path');
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="TUST-ACM 详细学习路径 - 完整的学习路线图">
-    <meta name="author" content="TUST-ACM Lab">
-    <title>详细学习路径 | TUST-ACM 算法实验室</title>
-    <!-- Favicon -->
-    <link rel="icon" href="assets/img/brand/favicon.jpg" type="image/png">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
-    <!-- Quick CSS -->
-    <link rel="stylesheet" href="assets/css/quick-website.css" id="stylesheet">
-</head>
-
-<body>
-    <!-- Navbar -->
+// 标准导航栏HTML
+const standardNavbar = `    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container">
             <!-- Brand -->
@@ -49,68 +36,10 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>`;
 
-    <!-- Hero Section -->
-    <section class="slice py-7 bg-gradient-primary">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <h1 class="display-3 text-white mb-3">详细学习路径</h1>
-                    <p class="lead text-white opacity-8">深入了解每条学习路径的详细内容</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content Section -->
-    <section class="slice py-7">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="alert alert-info">
-                        <h4 class="alert-heading">📢 提示</h4>
-                        <p class="mb-0">详细的学习路径内容已整合到首页中。请访问 <a href="index.html" class="alert-link">首页</a> 查看完整的学习路径信息。</p>
-                    </div>
-                    
-                    <div class="row mt-5">
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <div style="font-size:3rem;" class="mb-3">👶</div>
-                                    <h4>初学者路径</h4>
-                                    <p class="text-muted">零基础入门，从基础语法开始</p>
-                                    <a href="beginner-path.html" class="btn btn-primary btn-sm">查看详情</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <div style="font-size:3rem;" class="mb-3">🚀</div>
-                                    <h4>进阶学习者路径</h4>
-                                    <p class="text-muted">系统提升技术深度</p>
-                                    <a href="advanced-path.html" class="btn btn-success btn-sm">查看详情</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <div style="font-size:3rem;" class="mb-3">🎯</div>
-                                    <h4>求职导向路径</h4>
-                                    <p class="text-muted">面向实习和校招</p>
-                                    <a href="career-path.html" class="btn btn-warning btn-sm">查看详情</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+// 标准页脚HTML
+const standardFooter = `    <!-- Footer -->
     <footer class="footer bg-dark text-white">
         <div class="container">
             <div class="row pt-5 pb-4">
@@ -171,22 +100,12 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>`;
 
-    <!-- Core JS -->
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/svg-injector/dist/svg-injector.min.js"></script>
-    <script src="assets/libs/feather-icons/dist/feather.min.js"></script>
-    <!-- Quick JS -->
-    <script src="assets/js/quick-website.js"></script>
-    <!-- Feather Icons -->
-    <script>
-        feather.replace({
-            'width': '1em',
-            'height': '1em'
-        })
-    </script>
-</body>
-
-</html>
+console.log('标准导航栏和页脚模板已准备好');
+console.log('\n需要手动更新以下文件：');
+console.log('- src/beginner-path.html');
+console.log('- src/advanced-path.html');
+console.log('- src/career-path.html');
+console.log('- src/my-dashboard.html');
+console.log('- src/resources-hub.html');
